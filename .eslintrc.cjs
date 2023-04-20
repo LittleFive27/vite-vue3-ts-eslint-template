@@ -1,10 +1,6 @@
 /*!
  * https://eslint.bootcss.com/docs/rules/
  * https://eslint.vuejs.org/rules/
- *
- * - 0: off
- * - 1: warn
- * - 2: error
  */
 
 module.exports = {
@@ -23,10 +19,6 @@ module.exports = {
     ecmaFeatures: {
       jsx: true
     }
-  },
-  globals: {
-    AMap: false,
-    AMapUI: false
   },
   extends: [
     'plugin:vue/vue3-recommended',
@@ -161,5 +153,11 @@ module.exports = {
     'no-extra-boolean-cast': 'warn',
     'no-case-declarations': 'warn',
     'no-async-promise-executor': 'warn'
+  },
+  globals: {
+    defineProps: 'readonly',
+    defineEmits: 'readonly',
+    defineExpose: 'readonly',
+    withDefaults: 'readonly'
   }
 }
