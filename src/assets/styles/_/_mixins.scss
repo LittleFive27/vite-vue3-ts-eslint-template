@@ -1,0 +1,30 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin extend-click {
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+  }
+}
+
+@mixin ellipsis($lines: 1) {
+  @if $lines == 1 {
+    word-break: keep-all;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  } @else {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+  }
+}
