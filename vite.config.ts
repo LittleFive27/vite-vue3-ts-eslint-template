@@ -44,7 +44,7 @@ export default defineConfig({
       scss: {
         // 定义全局的scss变量
         // 给导入的路径最后加上 ;
-        additionalData: ``
+        additionalData: '@import "@/assets/styles/mixin/index.scss";'
       }
     }
   }
