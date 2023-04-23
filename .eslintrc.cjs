@@ -54,7 +54,7 @@ module.exports = {
     // 禁止出现重复的 case 标签
     'no-duplicate-case': 'warn',
     // 禁止出现空语句块
-    'no-empty': 'warn',
+    // 'no-empty': 'warn',
     // 禁止不必要的括号
     'no-extra-parens': 'off',
     // 禁止对 function 声明重新赋值
@@ -72,7 +72,7 @@ module.exports = {
     // 禁止 if 语句中 return 语句之后有 else 块
     'no-else-return': 'warn',
     // 禁止出现空函数
-    'no-empty-function': 'warn',
+    // 'no-empty-function': 'warn',
     // 禁用不必要的嵌套块
     'no-lone-blocks': 'warn',
     // 禁止使用多个空格
@@ -100,7 +100,7 @@ module.exports = {
     // 强制在代码块中使用一致的大括号风格
     'brace-style': 'warn',
     // 强制使用骆驼拼写法命名约定
-    camelcase: 'warn',
+    // camelcase: 'warn',
     // 强制使用一致的缩进
     indent: 'off',
     // 强制在 JSX 属性中一致地使用双引号或单引号
