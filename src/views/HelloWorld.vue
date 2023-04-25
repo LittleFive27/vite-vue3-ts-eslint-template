@@ -13,6 +13,13 @@
   <hr />
   <p @click="handelClick">{{ a }}</p>
   <p>{{ b }}</p>
+  <div class="postcss">测试自适应</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .postcss {
+    width: 200px;
+    height: 200px;
+    background-color: skyblue;
+  }
+</style>
