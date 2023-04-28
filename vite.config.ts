@@ -2,9 +2,14 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 
+// vite项目运行自动检查eslint
 import eslintPlugin from 'vite-plugin-eslint'
+
+// 自动导入Vue相关函数和组件
 import AutoImport from 'unplugin-auto-import/vite'
+// 按需导入组件，包括自定义组件和UI库,vant的函数需要手动引入(函数 + 样式)
 import Components from 'unplugin-vue-components/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineConfig({
   plugins: [
@@ -22,6 +27,7 @@ export default defineConfig({
       }
     }),
     Components({
+      resolvers: [VantResolver()]
       // dirs: ['src/components'], // 配置需要默认导入的自定义组件文件夹，该文件夹下的所有组件都会自动 import，默认为src/components
     })
   ],

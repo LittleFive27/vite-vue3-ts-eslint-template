@@ -15,8 +15,8 @@ module.exports = () => {
           mediaQuery: true,
           minPixelValue: 1,
           propList: ['*'],
-          exclude: [/node_modules/],
-          selectorBlackList: ['.ignore']
+          exclude: [/node_modules/], // 将第三方库的样式文件排除在转换之外
+          selectorBlackList : ['.ignore', /van.*/], // 不转换 .ignore- 开头的类名，和 .van- 开头的类名
         }) :
         null
   ];
