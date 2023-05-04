@@ -11,6 +11,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 
+import { viteMockServe } from 'vite-plugin-mock'
+
 export default defineConfig({
   plugins: [
     vue(),
@@ -29,7 +31,11 @@ export default defineConfig({
     Components({
       resolvers: [VantResolver()]
       // dirs: ['src/components'], // 配置需要默认导入的自定义组件文件夹，该文件夹下的所有组件都会自动 import，默认为src/components
-    })
+    }),
+    {
+      ...viteMockServe(),
+      apply: 'serve'
+    }
   ],
   server: {
     host: '0.0.0.0'

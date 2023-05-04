@@ -2,6 +2,8 @@
   import { showNotify, showToast } from 'vant'
   import 'vant/es/toast/style'
   import 'vant/es/notify/style'
+  import { getActivityStatus } from '@/api/activity-status'
+
   const a = ref<number>(1)
   function handelClick() {
     a.value = a.value + 1
@@ -11,6 +13,11 @@
   const show = ref(false)
   const showPopup = () => {
     show.value = true
+  }
+
+  const handleApi = async () => {
+    const res = await getActivityStatus()
+    console.log(res)
   }
 </script>
 
@@ -27,6 +34,7 @@
   <van-cell-group>
     <van-cell title="单元格" value="内容" />
   </van-cell-group>
+  <button @click="handleApi">发送请求</button>
 </template>
 
 <style scoped>
