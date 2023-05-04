@@ -16,7 +16,21 @@ import { viteMockServe } from 'vite-plugin-mock'
 const CWD = process.cwd()
 export default ({ mode }: ConfigEnv): UserConfig => {
   // 环境变量
-  const { VITE_PROXY_TARGET } = loadEnv(mode, CWD)
+  const { VITE_PROXY_TARGET, VITE_HASH } = loadEnv(mode, CWD)
+  let output = {
+    manualChunks: {
+      vue: ['vue', 'vue-router', 'pinia', '@vueuse/core']
+    }
+  }
+  // 测试环境不加hash
+  if (VITE_HASH === 'false') {
+    const names = {
+      entryFileNames: `assets/[name].js`,
+      chunkFileNames: `assets/[name].js`,
+      assetFileNames: `assets/[name].[ext]`
+    }
+    output = { ...output, ...names }
+  }
   return {
     plugins: [
       vue(),
@@ -69,6 +83,30 @@ export default ({ mode }: ConfigEnv): UserConfig => {
           additionalData: '@import "@/assets/styles/mixin/index.scss";'
         }
       }
+    },
+    build: {
+      outDir: `dist-${mode}`,
+      // 压缩代码
+      minify: 'terser', // 'terser' 相对较慢，但大多数情况下构建后的文件体积更小。'esbuild' 最小化混淆更快但构建后的文件相对更大。
+      // 合并小文件
+      rollupOptions: {
+        output: {
+          manualChunks: output.manualChunks
+        }
+      },
+      /** 在打包代码时移除 console.log、debugger 和 注释 */
+      terserOptions: {
+        compress: {
+          drop_console: false,
+          drop_debugger: true,
+          pure_funcs: ['console.log']
+        },
+        format: {
+          /** 删除注释 */
+          comments: false
+        }
+      },
+      chunkSizeWarningLimit: 2000
     }
   }
 }
