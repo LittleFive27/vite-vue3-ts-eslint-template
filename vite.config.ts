@@ -11,20 +11,21 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 
-import svgLoader from 'vite-svg-loader'
-
 import { viteMockServe } from 'vite-plugin-mock'
+import svgLoader from 'vite-svg-loader'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 const CWD = process.cwd()
 export default ({ mode }: ConfigEnv): UserConfig => {
   // 环境变量
-  const { VITE_PROXY_TARGET, VITE_HASH } = loadEnv(mode, CWD)
+  const { VITE_PROXY_TARGET, VITE_HASH, VITE_VISUALIZE } = loadEnv(mode, CWD)
+
+  // 测试环境不加hash
   let output = {
     manualChunks: {
       vue: ['vue', 'vue-router', 'pinia', '@vueuse/core']
     }
   }
-  // 测试环境不加hash
   if (VITE_HASH === 'false') {
     const names = {
       entryFileNames: `assets/[name].js`,
@@ -33,6 +34,17 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     }
     output = { ...output, ...names }
   }
+
+  // 可视化分析
+  let visualizerPlugin = {}
+  if (VITE_VISUALIZE === 'true') {
+    visualizerPlugin = visualizer({
+      open: true, //注意这里要设置为true，否则无效
+      gzipSize: true,
+      brotliSize: true
+    })
+  }
+
   return {
     plugins: [
       vue(),
@@ -56,7 +68,8 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         ...viteMockServe(),
         apply: 'serve'
       },
-      svgLoader()
+      svgLoader(),
+      visualizerPlugin
     ],
     server: {
       host: '0.0.0.0',
@@ -93,9 +106,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       minify: 'terser', // 'terser' 相对较慢，但大多数情况下构建后的文件体积更小。'esbuild' 最小化混淆更快但构建后的文件相对更大。
       // 合并小文件
       rollupOptions: {
-        output: {
-          manualChunks: output.manualChunks
-        }
+        output: output
       },
       /** 在打包代码时移除 console.log、debugger 和 注释 */
       terserOptions: {
