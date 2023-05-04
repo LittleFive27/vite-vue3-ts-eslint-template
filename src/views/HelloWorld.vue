@@ -3,6 +3,7 @@
   import 'vant/es/toast/style'
   import 'vant/es/notify/style'
   import { getActivityStatus } from '@/api/activity-status'
+  import IconMsg from '@/assets/icons/xiaoxi-zhihui.svg'
 
   const a = ref<number>(1)
   function handelClick() {
@@ -35,6 +36,7 @@
     <van-cell title="单元格" value="内容" />
   </van-cell-group>
   <button @click="handleApi">发送请求</button>
+  <IconMsg class="msg" />
 </template>
 
 <style scoped>
@@ -42,5 +44,10 @@
     width: 400px;
     height: 400px;
     background-color: skyblue;
+  }
+
+  .msg {
+    width: 50px;
+    height: 50px;
   }
 </style>

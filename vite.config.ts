@@ -11,6 +11,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 
+import svgLoader from 'vite-svg-loader'
+
 import { viteMockServe } from 'vite-plugin-mock'
 
 const CWD = process.cwd()
@@ -53,7 +55,8 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       {
         ...viteMockServe(),
         apply: 'serve'
-      }
+      },
+      svgLoader()
     ],
     server: {
       host: '0.0.0.0',
