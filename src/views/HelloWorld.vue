@@ -4,6 +4,9 @@
   import 'vant/es/notify/style'
   import { getActivityStatus } from '@/api/activity-status'
   import IconMsg from '@/assets/icons/xiaoxi-zhihui.svg?component'
+  import useRef from '@/hooks/ref'
+
+  const [count, setCount] = useRef<number>(1)
 
   const a = ref<number>(1)
   function handelClick() {
@@ -37,6 +40,8 @@
   </van-cell-group>
   <button @click="handleApi">发送请求</button>
   <IconMsg class="msg" />
+  <p>{{ count }}</p>
+  <button @click="setCount(count + 1)">setCount</button>
 </template>
 
 <style scoped>

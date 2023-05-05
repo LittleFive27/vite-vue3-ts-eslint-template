@@ -45,6 +45,12 @@ export const isMobile = (phone: string) => /^1[0-9]{10}$/.test(phone)
  * @param {Window} el
  * @returns {{x : any, y : any}}
  */
+declare global {
+  interface Window {
+    scrollLeft?: number
+    scrollTop?: number
+  }
+}
 export const getScrollPosition = (el = window) => ({
   x: el.scrollX !== undefined ? el.scrollX : el.scrollLeft,
   y: el.scrollY !== undefined ? el.scrollY : el.scrollTop
