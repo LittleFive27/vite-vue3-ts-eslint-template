@@ -1,0 +1,122 @@
+:root {
+  // ios安全区域变量(用来取值后赋给全局)
+  --sa-ios-top: constant(safe-area-inset-top);
+  --sa-ios-top: env(safe-area-inset-top);
+
+  --sa-ios-right: constant(safe-area-inset-right);
+  --sa-ios-right: env(safe-area-inset-right);
+
+  --sa-ios-bottom: constant(safe-area-inset-bottom);
+  --sa-ios-bottom: env(safe-area-inset-bottom);
+
+  --sa-ios-left: constant(safe-area-inset-left);
+  --sa-ios-left: env(safe-area-inset-left);
+
+  // 不支持全屏的安全区域值/全局安全区域取值变量名
+  --sa-top: 0px;
+  --sa-right: 0px;
+  --sa-bottom: 0px;
+  --sa-left: 0px;
+}
+
+.van-popup__close-icon {
+  //margin-top: -22px;
+  transform: scale(.8);
+}
+
+.van-pull-refresh__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pull-down-wrapper {
+
+  .van-loading__text, .van-pull-refresh__text {
+    color: #fff;
+  }
+}
+
+.body-container {
+  position: relative;
+  margin: auto;
+  height: 100%;
+  max-width: 1080px;
+  overflow: auto;
+}
+
+.overlay-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .8);
+  z-index: 5;
+  @include flex-center;
+
+  .overlay-wrapper {
+    position: relative;
+  }
+
+  .overlay-close {
+    width: 43px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 40px 46px;
+    @include extend-click;
+  }
+}
+
+.slide-bottom-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+.slide-bottom-enter-from,
+.slide-bottom-leave-to {
+  transform: translateY(100vh);
+}
+
+.slide-bottom-enter-active,
+.slide-bottom-leave-active {
+  transition: transform 0.3s linear;
+}
+
+.fade-enter-from {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: all 0.3s linear;
+}
+
+.dialog-message-content {
+  @include flex-center;
+  flex-direction: column;
+  padding: 70px 0 50px;
+
+  .text {
+    font-size: 36px;
+    color: #ffffff;
+  }
+
+  .btn {
+    margin-top: 60px;
+    @include flex-center;
+
+    img {
+      height: 95px;
+    }
+  }
+
+  .btn-group {
+    img:last-child {
+      margin-left: 50px;
+    }
+  }
+}
