@@ -4,19 +4,19 @@ import { clearPlaceholderLoading } from '@/utils/placeholder-loading'
 const routes: RouteRecordRaw[] = [
   {
     path: '/home',
-    redirect: '/welcome'
+    redirect: '/home'
   },
   {
     path: '/index',
-    redirect: '/welcome'
+    redirect: '/home'
   },
   {
     path: '/',
-    redirect: '/welcome'
+    redirect: '/home'
   },
   {
     path: '/welcome',
-    component: () => import('@/views/HelloWorld.vue'),
+    component: () => import('@/views/Home.vue'),
     meta: {
       title: 'HelloWorld'
     }

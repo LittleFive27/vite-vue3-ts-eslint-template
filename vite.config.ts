@@ -18,7 +18,7 @@ import { visualizer } from 'rollup-plugin-visualizer'
 const CWD = process.cwd()
 export default ({ mode }: ConfigEnv): UserConfig => {
   // 环境变量
-  const { VITE_PROXY_TARGET, VITE_HASH, VITE_VISUALIZE } = loadEnv(mode, CWD)
+  const { VITE_PROXY_TARGET, VITE_HASH, VITE_VISUALIZE, VITE_ASSETS_BASE } = loadEnv(mode, CWD)
 
   // 测试环境不加hash
   let output = {
@@ -71,6 +71,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       svgLoader(),
       visualizerPlugin
     ],
+    base: VITE_ASSETS_BASE || '/', // 设置打包路径
     server: {
       host: '0.0.0.0',
       proxy: {
