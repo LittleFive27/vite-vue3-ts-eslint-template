@@ -3,10 +3,6 @@ import { clearPlaceholderLoading } from '@/utils/placeholder-loading'
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/home',
-    redirect: '/home'
-  },
-  {
     path: '/index',
     redirect: '/home'
   },
@@ -15,10 +11,10 @@ const routes: RouteRecordRaw[] = [
     redirect: '/home'
   },
   {
-    path: '/welcome',
+    path: '/home',
     component: () => import('@/views/Home.vue'),
     meta: {
-      title: 'HelloWorld'
+      title: 'Home'
     }
   }
 ]
