@@ -1,14 +1,14 @@
 // 根据 isH5 变量确定是否开启 H5 自适应模式
 const isH5 = true
 
-const autoprefixer = require('autoprefixer');
+const postcssPresetsEnv = require('postcss-preset-env');
 const pxToViewport = require('postcss-px-to-viewport');
 
 module.exports = () => {
 
   // 添加 postcss 插件
   const plugins = [
-    autoprefixer(),
+    postcssPresetsEnv(),
     isH5 ?
         pxToViewport({
           viewportWidth: 1080,
