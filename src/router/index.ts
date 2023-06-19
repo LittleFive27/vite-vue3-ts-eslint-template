@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { clearPlaceholderLoading } from '@/utils/placeholder-loading'
+import Home from '@/views/Home.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -12,7 +13,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/home',
-    component: () => import('@/views/Home.vue'),
+    component: Home,
     meta: {
       title: 'Home'
     }

@@ -3,6 +3,6 @@
   <!--  <gsap-com />-->
 </template>
 
-<script></script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss"></style>
