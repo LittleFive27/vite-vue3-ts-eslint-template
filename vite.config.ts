@@ -1,6 +1,7 @@
 import { UserConfig, ConfigEnv, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import Pages from 'vite-plugin-pages'
 
 // vite项目运行自动检查eslint
 import eslintPlugin from 'vite-plugin-eslint'
@@ -36,7 +37,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
   }
 
   // 可视化分析
-  let visualizerPlugin = {}
+  let visualizerPlugin = visualizer()
   if (VITE_VISUALIZE === 'true') {
     visualizerPlugin = visualizer({
       open: true, //注意这里要设置为true，否则无效
@@ -48,6 +49,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
   return {
     plugins: [
       vue(),
+      Pages(),
       eslintPlugin(),
       AutoImport({
         imports: ['vue', 'vue-router', 'pinia'], // 自动导入vue和vue-router相关函数
